@@ -1,6 +1,7 @@
 package core
 
 import (
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"os"
 	"strings"
 
@@ -17,8 +18,9 @@ func newLensClient(logger *zap.Logger, config ChainConfig, homePath string) (*le
 		return nil, errInvalidEndpoint{rpc: config.RpcEndpoint}
 	}
 
+	keyName := config.KeyName()
 	cfg := lens.ChainClientConfig{
-		Key:            config.KeyName,
+		Key:            keyName,
 		ChainID:        config.ChainId,
 		RPCAddr:        config.RpcEndpoint,
 		AccountPrefix:  config.AccountPrefix,
@@ -38,8 +40,16 @@ func newLensClient(logger *zap.Logger, config ChainConfig, homePath string) (*le
 		return nil, err
 	}
 
-	// ignore the error
-	addr, _ := cc.RestoreKey(config.KeyName, config.Key, 118)
+	// First delete the canonical key if it exists to prevent RestoreKey from throwing an error
+	err = cc.Keybase.Delete(keyName)
+	if err != nil && !sdkerrors.ErrKeyNotFound.Is(err) {
+		return nil, err
+	}
+
+	addr, err := cc.RestoreKey(keyName, config.Key, 118)
+	if err != nil {
+		return nil, err
+	}
 	logger.Info("master wallet is restored", zap.String("address", addr))
 
 	return cc, nil

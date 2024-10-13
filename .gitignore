@@ -5,4 +5,5 @@
 bin/
 
 # lens client key folders
+keys/rivest.yml
 keys/
