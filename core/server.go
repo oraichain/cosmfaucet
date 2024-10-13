@@ -83,6 +83,9 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 
 	var address []byte
 	var err error
+	// Here we accept both an Ethereum-formatted address or a cosmos-sdk bech32 address
+	// Each address type maps to the same underlying address that will holding a single
+	// balance fungible between the base cosmos chain and the Ethereum VM
 	if common.IsHexAddress(request.Address) {
 		address = common.HexToAddress(request.Address).Bytes()
 	} else {
