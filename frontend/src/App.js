@@ -70,7 +70,7 @@ function App() {
                     { alert && <AlertView message={alert} type="warning"/> }
                     { success && <AlertView message={success} type="success"/> }
                     { isSending && <AlertView message={"Transaction is being sent to the server"} type="warning"/> }
-                  <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">Cosmfaucet</h2>
+                  <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">Inco Rivest Faucet</h2>
                 </div>
                 { chains.length === 0 && (<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

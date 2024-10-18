@@ -2,6 +2,7 @@ package core
 
 import (
 	"context"
+	"github.com/ethereum/go-ethereum/common"
 	"strings"
 	"sync"
 
@@ -80,16 +81,24 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 		}
 	}
 
-	// validate address format
-	acc, err := sdk.GetFromBech32(request.Address, chainConfig.AccountPrefix)
-	if err != nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid address")
+	var address []byte
+	var err error
+	// Here we accept both an Ethereum-formatted address or a cosmos-sdk bech32 address
+	// Each address type maps to the same underlying address that will holding a single
+	// balance fungible between the base cosmos chain and the Ethereum VM
+	if common.IsHexAddress(request.Address) {
+		address = common.HexToAddress(request.Address).Bytes()
+	} else {
+		// validate address format
+		address, err = sdk.GetFromBech32(request.Address, chainConfig.AccountPrefix)
+		if err != nil {
+			return nil, status.Error(codes.InvalidArgument, "invalid address")
+		}
 	}
 
-	from, err := sdk.GetFromBech32(chainConfig.Sender, chainConfig.AccountPrefix)
+	ki, err := client.Keybase.Key(chainConfig.KeyName())
 	if err != nil {
-		s.log.Error("invalid sender address", zap.Error(err))
-		return nil, status.Error(codes.Internal, "invalid sender address | this is unexpected error, please inform to the admin.")
+		return nil, status.Error(codes.Internal, "could not get faucet key")
 	}
 
 	coin, err := sdk.ParseCoinNormalized(chainConfig.DropCoin)
@@ -110,8 +119,8 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 	s.faucet.sendTask(request.ChainId, &work{
 		chainId: request.ChainId,
 		detail: &transferWork{
-			fromAddress: client.MustEncodeAccAddr(from),
-			toAddress:   client.MustEncodeAccAddr(acc),
+			fromAddress: client.MustEncodeAccAddr(ki.GetAddress()),
+			toAddress:   client.MustEncodeAccAddr(address),
 			amount:      []sdk.Coin{coin},
 		},
 	})

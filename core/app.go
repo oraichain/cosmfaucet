@@ -77,8 +77,7 @@ func (a *App) validateChainConditions() error {
 			return fmt.Errorf("chain with id %s does not exist", chain.ChainId)
 		}
 
-		// check sender is the valid address
-		addr, err := sdk.GetFromBech32(chain.Sender, chain.AccountPrefix)
+		ki, err := client.Keybase.Key(chain.KeyName())
 		if err != nil {
 			return err
 		}
@@ -90,7 +89,7 @@ func (a *App) validateChainConditions() error {
 		}
 
 		// check the denom of `dropCoin` is the same with native currency
-		coins, err := client.QueryBalanceWithDenomTraces(context.Background(), addr, nil)
+		coins, err := client.QueryBalanceWithDenomTraces(context.Background(), ki.GetAddress(), nil)
 		if err != nil {
 			return err
 		}

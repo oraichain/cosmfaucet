@@ -1,6 +1,7 @@
 package core
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -33,10 +34,12 @@ type ChainConfig struct {
 	AccountPrefix string  `yaml:"account_prefix"`
 	GasAdjustment float64 `yaml:"gas_adjustment"`
 	GasPrice      string  `yaml:"gas_price"`
-	Sender        string  `yaml:"sender"`
-	KeyName       string  `yaml:"key_name"`
 	Key           string  `yaml:"key"`
 	DropCoin      string  `yaml:"drop_coin"`
+}
+
+func (cc *ChainConfig) KeyName() string {
+	return fmt.Sprintf("__cosmfaucet_%s_root", cc.ChainId)
 }
 
 // LoadConfig loads config from file
