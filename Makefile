@@ -24,7 +24,7 @@ lint:
 	docker run -v $$(pwd):/src -w /src --rm bufbuild/buf:$(BUF_VERSION) breaking --against 'https://github.com/johanbrandhorst/grpc-gateway-boilerplate.git#branch=master'
 
 
-DOCKER_VERSION:=v1.0.2
+DOCKER_VERSION:=v1.0.3
 
 .PHONY: docker_push
 docker_push: build build_frontend
