@@ -29,15 +29,12 @@ function FaucetPage({
   error,
   alert,
   success,
+  chains,
 }) {
   return (
     <div className="flex flex-col md:flex-row h-screen font-urbanist">
       <div className="w-full md:w-1/2 flex flex-col bg-white p-8 md:px-16 md:py-12 h-full">
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHhEWhkR8-SjuzHs6GN7BsTWUFuJXJDgGomk7DJCgL6kOl93b_sYf5z3224p5eYnAF20KW_U3OoAQ7-MaAQkApBbt5ScbZ4MYqf8TsOZLc7efUx5i5jIegW27iVw3vtbEMB3E6YCfpz_4w91r237eNdj9smkInTOswXB61Vs2YJhcoCFzCJvksuoTFKCY/s1600/inco-blue.png"
-          className="w-32"
-          alt="Inco Logo"
-        />
+        <img src="/inco-logo.svg" className="w-32" alt="Inco Logo" />
 
         {error ? (
           <div className="max-w-[520px] pt-16 md:pt-32 md:px-6">
@@ -94,6 +91,9 @@ function FaucetPage({
                 type="warning"
               />
             )}
+            {chains.length === 0 && (
+              <AlertView message="No chains available" type="error" />
+            )}
 
             <form className="space-y-4" onSubmit={handleSubmit}>
               <input
@@ -141,8 +141,7 @@ function FaucetPage({
       <div
         className="w-full md:w-1/2 h-64 md:h-full bg-cover bg-center flex items-center justify-center"
         style={{
-          backgroundImage:
-            "url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYhXQh1EQUgApktrPJKLX7dMJlnYjElCdpBPqXJrs9kC6vqht6dJyRaaq_S4lyZWNdRvwZWtObS_SwvfY4siXGR6WSzpSENmkUDjL2sqHeM9RARYAn2h2Jgh098hIbfAA2wXRdxl4_wrxEq61NP4eJz54TXhqclMgFyshnwp-smScp0wLM-SWrc48Wm6M/s1600/image.png')",
+          backgroundImage: "url('/hero-image.png')",
         }}
       />
     </div>

@@ -105,6 +105,7 @@ function App() {
         alert={alert}
         error={error}
         success={success}
+        chains={chains}
       />
     </div>
   );
