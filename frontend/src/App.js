@@ -9,7 +9,7 @@ function App() {
     const [isSending, setIsSending] = useState(false);
     const [address, setAddress] = useState("");
     const [selected, setSelected] = useState(null);
-    
+
 
     const loadChains = async () => {
       return fetch("/api/v1/faucet/chains").then((response) => response.json());
@@ -53,50 +53,9 @@ function App() {
         });
     }, []);
 
-  //   if (error != null) {
-  //     return (
-  //       <div className="bg-slate-800 h-screen">
-  //         <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-  //           <div className="sm:mx-auto sm:w-full sm:max-w-md">
-  //             <AlertView message={error} type="error" />
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-
   return (
-    // <div className="bg-slate-800 h-screen">
-    //   <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-    //     {/* <div className="sm:mx-auto sm:w-full sm:max-w-md">
-    //                 { error && <AlertView message={error} type="error"/> }
-    //                 { alert && <AlertView message={alert} type="warning"/> }
-    //                 { success && <AlertView message={success} type="success"/> }
-    //                 { isSending && <AlertView message={"Transaction is being sent to the server"} type="warning"/> }
-    //               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">Inco Rivest Faucet</h2>
-    //             </div>
-    //             { chains.length === 0 && (<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    //                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    //                     <div className="bg-slate-700 py-8 px-4 shadow sm:rounded-lg sm:px-10">
-    //                         <div className="space-y-6 text-white">
-    //                             No chains available
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>) } */}
-    //     <FaucetUI
-    //       isSending={isSending}
-    //       chains={chains}
-    //       selectedChain={selected}
-    //       handleSelectChain={setSelected}
-    //       address={address}
-    //       onAddressChanged={setAddress}
-    //       handleSubmit={handleSubmit}
-    //     />
-    //   </div>
-    // </div>
     <div>
-      
+
       <FaucetPage
         isSending={isSending}
         address={address}
