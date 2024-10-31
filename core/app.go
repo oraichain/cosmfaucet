@@ -193,7 +193,6 @@ func (a *App) Run() error {
 
 func (a *App) serveFrontend(mux *runtime.ServeMux) error {
 	if err := mux.HandlePath("GET", "/", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-		// serve static file
 		http.ServeFile(w, r, "frontend/build/index.html")
 	}); err != nil {
 		return err
@@ -206,8 +205,13 @@ func (a *App) serveFrontend(mux *runtime.ServeMux) error {
 	}
 
 	if err := mux.HandlePath("GET", "/static/css/**", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-		fmt.Printf("path: %s", r.URL.Path)
 		http.ServeFile(w, r, "frontend/build/"+r.URL.Path)
+	}); err != nil {
+		return err
+	}
+
+	if err := mux.HandlePath("GET", "/{asset}", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
+		http.ServeFile(w, r, "frontend/build/"+pathParams["asset"])
 	}); err != nil {
 		return err
 	}

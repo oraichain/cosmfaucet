@@ -1,4 +1,5 @@
 BUF_VERSION:=1.5.0
+DOCKER_VERSION:=$(shell git describe --tags --always)
 
 .PHONY: build_frontend
 build_frontend:
@@ -24,9 +25,7 @@ lint:
 	docker run -v $$(pwd):/src -w /src --rm bufbuild/buf:$(BUF_VERSION) breaking --against 'https://github.com/johanbrandhorst/grpc-gateway-boilerplate.git#branch=master'
 
 
-DOCKER_VERSION:=v2.0.0
-
 .PHONY: docker_push
-docker_push: build build_frontend
+docker_push: build_frontend
 	docker buildx build --platform linux/amd64 -t inconetwork/cosmfaucet:$(DOCKER_VERSION) .
 	docker push inconetwork/cosmfaucet:$(DOCKER_VERSION)
