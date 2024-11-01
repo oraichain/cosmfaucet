@@ -1,0 +1,18 @@
+server:
+  allow_cors: false
+  http:
+    port: 8080
+  grpc:
+    port: 9092
+  limit:
+    enabled: true
+    period: 86400
+chains:
+  - name: "rivest"
+    account_prefix: 'ethm'
+    chain_id: 'rivest_21097-1'
+    gas_adjustment: 1.3
+    gas_price: '10aphoton'
+    drop_coin: '1230000000000000000aphoton'
+    key: 'reward reward reward reward reward reward reward reward reward reward reward reward '
+    rpc_endpoint: 'http://localhost:26657/'
