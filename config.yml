@@ -9,10 +9,10 @@ server:
     period: 86400
 chains:
   - name: "orai"
-    chain_id: "testing"
+    chain_id: "Oraichain-testnet"
     rpc_endpoint: "http://localhost:26657/"
     account_prefix: "orai"
-    key: "decorate bright ozone fork gallery riot bus exhaust worth way bone indoor calm squirrel merry zero scheme cotton until shop any excess stage laundry"
-    gas_adjustment: 2
+    key: "fault actress void dress era ecology barrel recycle motor tennis volcano ridge road bone endless tree today cheese brief dawn feature girl resemble must"
+    gas_adjustment: 2.5
     gas_price: "0.1orai"
-    drop_coin: "10000000orai"
+    drop_coin: "5000000orai"

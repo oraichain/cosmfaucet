@@ -114,7 +114,7 @@ function FaucetPage({
             </form>
 
             <a
-              href="https://docs.owallet.io/introduction/cosmos-api"
+              href="https://docs.owallet.io/integration#how-to-add-a-chain-into-owallet"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[#4477FF] text-sm mt-4 hover:underline font-mono"
