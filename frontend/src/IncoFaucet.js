@@ -100,7 +100,7 @@ function FaucetPage({
                 type="text"
                 value={address}
                 onChange={(e) => onAddressChanged(e.target.value)}
-                placeholder="0xAD..."
+                placeholder="orai..."
                 className="w-full px-4 py-[14px] border border-gray-200 rounded-lg font-mono text-base placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
 
@@ -114,7 +114,7 @@ function FaucetPage({
             </form>
 
             <a
-              href="https://docs.inco.org/getting-started/connect-metamask"
+              href="https://docs.owallet.io/introduction/cosmos-api"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[#4477FF] text-sm mt-4 hover:underline font-mono"
