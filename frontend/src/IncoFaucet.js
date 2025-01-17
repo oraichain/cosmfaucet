@@ -119,7 +119,7 @@ function FaucetPage({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[#4477FF] text-sm mt-4 hover:underline font-mono"
             >
-              Add Rivest Network to Wallet
+              Add Oraichain Network to Wallet
               <svg
                 className="w-4 h-4"
                 fill="none"
