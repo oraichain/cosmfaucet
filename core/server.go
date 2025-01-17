@@ -2,9 +2,10 @@ package core
 
 import (
 	"context"
-	"github.com/ethereum/go-ethereum/common"
 	"strings"
 	"sync"
+
+	"github.com/ethereum/go-ethereum/common"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/scalalang2/cosmfaucet/gen/proto/faucetpb"
@@ -116,10 +117,12 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 		}
 	}
 
+	fromAddress, _ := ki.GetAddress()
+
 	s.faucet.sendTask(request.ChainId, &work{
 		chainId: request.ChainId,
 		detail: &transferWork{
-			fromAddress: client.MustEncodeAccAddr(ki.GetAddress()),
+			fromAddress: client.MustEncodeAccAddr(fromAddress),
 			toAddress:   client.MustEncodeAccAddr(address),
 			amount:      []sdk.Coin{coin},
 		},

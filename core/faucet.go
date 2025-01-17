@@ -65,7 +65,7 @@ func (f *Faucet) runWorker(chainId ChainId, workCh chan *work) {
 		select {
 		case <-tick.C:
 			if len(messages) > 0 {
-				tx, err := f.clients[chainId].SendMsgs(context.Background(), messages)
+				tx, err := f.clients[chainId].SendMsgs(context.Background(), messages, "faucet")
 				if err != nil {
 					f.logger.Error("failed to send transaction, failed messages will be removed from queue",
 						zap.String("chain_id", string(chainId)),

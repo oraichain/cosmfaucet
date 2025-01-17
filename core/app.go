@@ -89,7 +89,8 @@ func (a *App) validateChainConditions() error {
 		}
 
 		// check the denom of `dropCoin` is the same with native currency
-		coins, err := client.QueryBalanceWithDenomTraces(context.Background(), ki.GetAddress(), nil)
+		fromAddress, _ := ki.GetAddress()
+		coins, err := client.QueryBalanceWithDenomTraces(context.Background(), fromAddress, nil)
 		if err != nil {
 			return err
 		}

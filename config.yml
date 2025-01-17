@@ -8,19 +8,11 @@ server:
     enabled: true
     period: 86400
 chains:
-  - name: "cosmos"
-    chain_id: "gaia"
+  - name: "orai"
+    chain_id: "testing"
     rpc_endpoint: "http://localhost:26657/"
-    account_prefix: "cosmos"
-    key: "reopen throw concert garment wash slab jump company habit father below stage float attitude achieve net charge bulb mouse mind fat net hello vague"
-    gas_adjustment: 1.2
-    gas_price: "0.01uatom"
-    drop_coin: "10000000uatom"
-  - name: "juno"
-    chain_id: "juno"
-    rpc_endpoint: "http://localhost:26658/"
-    account_prefix: "cosmos"
-    key: "predict lonely oxygen category agent wait legend quarter often six liquid search panic panther chuckle glow alone detail bike below dust marriage throw pause"
-    gas_adjustment: 1.2
-    gas_price: "0.01ujuno"
-    drop_coin: "10000000ujuno"
+    account_prefix: "orai"
+    key: "decorate bright ozone fork gallery riot bus exhaust worth way bone indoor calm squirrel merry zero scheme cotton until shop any excess stage laundry"
+    gas_adjustment: 2
+    gas_price: "0.1orai"
+    drop_coin: "10000000orai"
