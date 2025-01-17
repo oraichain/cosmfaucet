@@ -34,7 +34,7 @@ function FaucetPage({
   return (
     <div className="flex flex-col md:flex-row h-screen font-urbanist">
       <div className="w-full md:w-1/2 flex flex-col bg-white p-8 md:px-16 md:py-12 h-full">
-        <img src="/inco-logo.svg" className="w-32" alt="Inco Logo" />
+        <img src="/favicon.ico" className="w-32" alt="Inco Logo" />
 
         {error ? (
           <div className="max-w-[520px] pt-16 md:pt-32 md:px-6">
@@ -75,7 +75,7 @@ function FaucetPage({
             </h1>
 
             <p className="text-[15px] md:text-xl leading-[22px] font-mono text-gray-900 mb-12">
-              Get some INCO test tokens.
+              Get some ORAI test tokens.
             </p>
 
             <p className="text-[13px] leading-[20px] font-normal text-gray-500 font-mono mb-2">
