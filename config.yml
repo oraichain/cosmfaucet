@@ -10,7 +10,7 @@ server:
 chains:
   - name: "orai"
     chain_id: "Oraichain-testnet"
-    rpc_endpoint: "http://localhost:26657/"
+    rpc_endpoint: "https://testnet-v2.rpc.orai.io:443/"
     account_prefix: "orai"
     key: "fault actress void dress era ecology barrel recycle motor tennis volcano ridge road bone endless tree today cheese brief dawn feature girl resemble must"
     gas_adjustment: 2.5
