@@ -7,4 +7,6 @@ bin/
 # lens client key folders
 rivest.yml
 keys/
+
+# lens client config
 config.yml
