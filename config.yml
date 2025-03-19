@@ -16,3 +16,4 @@ chains:
     gas_adjustment: 2.5
     gas_price: "0.1orai"
     drop_coin: "5000000orai"
+    drop_max_coin:  "1000000000000factory/orai1466nf3zuxpya8q9emxukd7vftaf6h4psr0a07srl5zw74zh84yjqtsu49d/max"

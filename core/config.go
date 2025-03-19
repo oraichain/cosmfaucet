@@ -36,6 +36,7 @@ type ChainConfig struct {
 	GasPrice      string  `yaml:"gas_price"`
 	Key           string  `yaml:"key"`
 	DropCoin      string  `yaml:"drop_coin"`
+	DropMaxCoin      string  `yaml:"drop_max_coin"`
 }
 
 func (cc *ChainConfig) KeyName() string {
