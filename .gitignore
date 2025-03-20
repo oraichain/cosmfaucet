@@ -3,8 +3,6 @@
 .vscode
 
 bin/
-build/
-frontend/build/
 
 # lens client key folders
 rivest.yml
