@@ -75,7 +75,7 @@ function FaucetPage({
             </h1>
 
             <p className="text-[15px] md:text-xl leading-[22px] font-mono text-gray-900 mb-12">
-              Get some ORAI test tokens.
+              Get some ORAI,MAX test tokens.
             </p>
 
             <p className="text-[13px] leading-[20px] font-normal text-gray-500 font-mono mb-2">
