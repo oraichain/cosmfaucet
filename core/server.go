@@ -108,6 +108,12 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 		return nil, status.Error(codes.Internal, "invalid coin format | this is unexpected error, please inform to the admin.")
 	}
 
+	coinMax, errMax := sdk.ParseCoinNormalized(chainConfig.DropMaxCoin)
+	if errMax != nil {
+		s.log.Error("invalid coin max format", zap.Error(errMax))
+		return nil, status.Error(codes.Internal, "invalid coin max format | this is unexpected error, please inform to the admin.")
+	}
+
 	s.mux.Lock()
 	defer s.mux.Unlock()
 
@@ -124,7 +130,7 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 		detail: &transferWork{
 			fromAddress: client.MustEncodeAccAddr(fromAddress),
 			toAddress:   client.MustEncodeAccAddr(address),
-			amount:      []sdk.Coin{coin},
+			amount:      []sdk.Coin{coinMax,coin},
 		},
 	})
 
