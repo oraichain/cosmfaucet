@@ -12,7 +12,7 @@ chains:
     chain_id: "testing"
     rpc_endpoint: "http://127.0.0.1:26657/"
     account_prefix: "orai"
-    key: "still topple saddle peanut spoon bulb you race history arrow brick strong ski position fitness kitten movie crowd cage local marriage silk fever snow"
+    key: ""
     gas_adjustment: 2.5
     gas_price: "0.1orai"
     drop_coin: "5000000orai"

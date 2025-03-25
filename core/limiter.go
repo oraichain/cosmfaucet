@@ -2,7 +2,6 @@ package core
 
 import (
 	"container/heap"
-	"fmt"
 	"log"
 	"time"
 )
@@ -82,12 +81,6 @@ func (l *Limiter) AddRequest(chainId ChainId, ipAddress string) {
 		ipAddress: ipAddress,
 		time:      now,
 	})
-
-	for _, req := range *reqHeap {
-		fmt.Println("reqHeap:", req.ipAddress, req.time)
-	}
-	lastRequest := reqHeap.last()
-	fmt.Println("lastRequest:", lastRequest.ipAddress, lastRequest.time)
 
 	if _, ok := l.accCache[chainId]; !ok {
 		log.Fatalf("given chainId is not registered at limiter: %s", chainId)
