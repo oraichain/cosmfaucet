@@ -2,6 +2,7 @@ package core
 
 import (
 	"container/heap"
+	"fmt"
 	"log"
 	"time"
 )
@@ -20,7 +21,8 @@ func (h RequestHeap) Len() int {
 }
 
 func (h RequestHeap) Less(i, j int) bool {
-	return h[i].time < h[j].time
+	timeNow := timestamp(time.Now().Unix())
+	return (timeNow - h[i].time) < (timeNow - h[j].time)
 }
 
 func (h RequestHeap) Swap(i, j int) {
@@ -80,6 +82,12 @@ func (l *Limiter) AddRequest(chainId ChainId, ipAddress string) {
 		ipAddress: ipAddress,
 		time:      now,
 	})
+
+	for _, req := range *reqHeap {
+		fmt.Println("reqHeap:", req.ipAddress, req.time)
+	}
+	lastRequest := reqHeap.last()
+	fmt.Println("lastRequest:", lastRequest.ipAddress, lastRequest.time)
 
 	if _, ok := l.accCache[chainId]; !ok {
 		log.Fatalf("given chainId is not registered at limiter: %s", chainId)
