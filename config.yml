@@ -1,0 +1,18 @@
+server:
+  allow_cors: false
+  http:
+    port: 8080
+  grpc:
+    port: 9092
+  limit:
+    enabled: true
+    period: 86400
+chains:
+  - name: "orai"
+    chain_id: "testing"
+    rpc_endpoint: "http://127.0.0.1:26657/"
+    account_prefix: "orai"
+    key: ""
+    gas_adjustment: 2.5
+    gas_price: "0.1orai"
+    drop_coin: "5000000orai"

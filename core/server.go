@@ -67,7 +67,6 @@ func RemoteAddr(ctx context.Context) string {
 // GiveMe sends a `BankMsg` transaction to the chain to send some tokens to the given address
 // It blocks the request if the user is given the token in the last 24 hours.
 func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*faucetpb.GiveMeResponse, error) {
-	remoteAddr := RemoteAddr(ctx)
 	client, ok := s.clients[request.ChainId]
 	if !ok {
 		return nil, status.Error(codes.NotFound, "chain not supported")
@@ -118,7 +117,7 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 	defer s.mux.Unlock()
 
 	if s.limiter != nil {
-		if !s.limiter.IsAllowed(request.ChainId, remoteAddr) {
+		if !s.limiter.IsAllowed(request.ChainId, request.Address) {
 			return nil, status.Error(codes.PermissionDenied, "user cannot request token more than once during specific period of time")
 		}
 	}
@@ -135,7 +134,7 @@ func (s *Server) GiveMe(ctx context.Context, request *faucetpb.GiveMeRequest) (*
 	})
 
 	if s.limiter != nil {
-		s.limiter.AddRequest(request.ChainId, remoteAddr)
+		s.limiter.AddRequest(request.ChainId, request.Address)
 	}
 
 	return &faucetpb.GiveMeResponse{}, nil

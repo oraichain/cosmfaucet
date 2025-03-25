@@ -20,7 +20,8 @@ func (h RequestHeap) Len() int {
 }
 
 func (h RequestHeap) Less(i, j int) bool {
-	return h[i].time < h[j].time
+	timeNow := timestamp(time.Now().Unix())
+	return (timeNow - h[i].time) < (timeNow - h[j].time)
 }
 
 func (h RequestHeap) Swap(i, j int) {
