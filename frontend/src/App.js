@@ -35,7 +35,7 @@ function App() {
 
       setIsSending(false);
       response.status === 200
-        ? setSuccess("your request is sent, it may takes some time to proceed")
+        ? setSuccess("your request is sent, it may take some time to proceed")
         : setAlert(res_json.message);
       response.status === 200 ? setAlert(null) : setSuccess(null);
       console.log(response);
